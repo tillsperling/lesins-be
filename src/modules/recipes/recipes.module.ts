@@ -7,8 +7,8 @@ import { RecipesService } from '@/modules/recipes/recipes.service';
 import { RecipeRepository } from '@/modules/recipes/repositories/recipes.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Recipe])],
-  controllers: [RecipesController],
-  providers: [RecipesService, RecipeRepository],
+    imports: [TypeOrmModule.forFeature([Recipe])],
+    controllers: [RecipesController],
+    providers: [RecipesService, RecipeRepository],
 })
 export class RecipesModule {}

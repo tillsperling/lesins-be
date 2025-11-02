@@ -3,14 +3,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { App } from 'supertest/types';
 
 describe('AppController (e2e)', () => {
-  let app: INestApplication<App>;
+    let app: INestApplication<App>;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [],
-    }).compile();
+    beforeEach(async () => {
+        const moduleFixture: TestingModule = await Test.createTestingModule({
+            imports: [],
+        }).compile();
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
+        app = moduleFixture.createNestApplication();
+        await app.init();
+    });
 });

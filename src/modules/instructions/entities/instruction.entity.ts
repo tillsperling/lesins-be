@@ -1,36 +1,30 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Recipe } from '@/modules/recipes/entities/recipe.entity';
 
 @Entity('instructions')
 export class Instruction {
-  @PrimaryGeneratedColumn('uuid', { name: 'id' })
-  id: string;
+    @PrimaryGeneratedColumn('uuid', { name: 'id' })
+    id: string;
 
-  @Column({ name: 'recipe_id' })
-  recipeId: string;
+    @Column({ name: 'recipe_id' })
+    recipeId: string;
 
-  @Column({ name: 'subrecipe_id' })
-  subrecipeId: string;
+    @Column({ name: 'sub_recipe_id' })
+    subRecipeId: string;
 
-  @Column({ name: 'step' })
-  step: number;
+    @Column({ name: 'step' })
+    step: number;
 
-  @Column({ name: 'value', length: 255 })
-  value: string;
+    @Column({ name: 'value', length: 255 })
+    value: string;
 
-  @ManyToOne(() => Recipe, (recipe) => recipe.instructions, {
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'recipe_id' })
-  recipe: Recipe;
+    @ManyToOne(() => Recipe, (recipe) => recipe.instructions, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({ name: 'recipe_id' })
+    recipe: Recipe;
 
-  @JoinColumn({ name: 'subrecipe_id' })
-  subrecipe: Recipe;
+    @JoinColumn({ name: 'sub_recipe_id' })
+    subRecipe: Recipe;
 }
