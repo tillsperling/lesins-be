@@ -1,20 +1,22 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Recipe } from '@/modules/recipes/entities/recipe.entity';
 
-@Entity('subRecipes')
+@Entity('sub_recipes')
 export class SubRecipe {
     @PrimaryGeneratedColumn('uuid', { name: 'id' })
     id: string;
 
-    @Column({ name: 'recipe_id' })
+    @Column({ name: 'recipe_id', length: 100 })
     recipeId: string;
 
-    @Column({ name: 'name', length: 100 })
-    name: string;
+    @Column({ name: 'step', type: 'int' })
+    step: number;
 
-    @ManyToOne(() => Recipe, (recipe) => recipe.subRecipes, {
-        onDelete: 'CASCADE',
-    })
+    @Column({ name: 'value', length: 100 })
+    value: string;
+
+    @ManyToOne(() => Recipe, (recipe) => recipe.subRecipes, { onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'recipe_id' })
     recipe: Recipe;
 }

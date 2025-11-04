@@ -1,11 +1,17 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsInt, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
 export class CreateSubRecipeDto {
-    @IsString()
     @IsNotEmpty()
-    name: string;
+    @IsUUID()
+    recipeId: string;
+
+    @Type(() => Number)
+    @IsInt()
+    @IsNotEmpty()
+    step: number;
 
     @IsString()
-    @IsOptional()
-    description: string;
+    @IsNotEmpty()
+    value: string;
 }

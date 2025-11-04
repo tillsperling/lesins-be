@@ -1,11 +1,23 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsInt, IsNotEmpty, IsOptional, IsString, IsUUID, MaxLength, Min } from 'class-validator';
 
 export class CreateInstructionDto {
-    @IsString()
+    @IsUUID()
     @IsNotEmpty()
-    name: string;
+    recipeId: string;
+
+    @IsUUID()
+    @IsOptional()
+    subRecipeId: string | null;
+
+    @Type(() => Number)
+    @IsInt()
+    @IsNotEmpty()
+    @Min(1)
+    step: number;
 
     @IsString()
-    @IsOptional()
-    description: string;
+    @IsNotEmpty()
+    @MaxLength(255)
+    value: string;
 }

@@ -1,9 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-import { CreateIngredientDto } from '@/modules/ingredients/dto/create-ingredient-dto';
-import { CreateInstructionDto } from '@/modules/instructions/dto/create-instruction-dto';
-import { CreateSubRecipeDto } from '@/modules/subrecipes/dto/create-subrecipe-dto';
-
 export class CreateRecipeDto {
     @IsString()
     @IsNotEmpty()
@@ -13,7 +9,5 @@ export class CreateRecipeDto {
     @IsOptional()
     description: string;
 
-    subRecipes?: CreateSubRecipeDto[];
-    ingredients?: CreateIngredientDto[];
-    instructions?: CreateInstructionDto[];
+    // TODO: add ingredients and instructions and subrecipe to be part of the create recipe dto
 }
