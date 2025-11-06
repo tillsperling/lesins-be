@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+
+import {
+    NestedIngredientDto,
+    NestedInstructionDto,
+    NestedSubRecipeDto,
+} from '@/modules/recipes/dto/create-recipe-nested.dtos';
 
 export class CreateRecipeDto {
     @IsString()
@@ -9,5 +16,18 @@ export class CreateRecipeDto {
     @IsOptional()
     description: string;
 
-    // TODO: add ingredients and instructions and subrecipe to be part of the create recipe dto
+    @IsOptional()
+    @ValidateNested({ each: true })
+    @Type(() => NestedSubRecipeDto)
+    subRecipes?: NestedSubRecipeDto[];
+
+    @IsOptional()
+    @ValidateNested({ each: true })
+    @Type(() => NestedIngredientDto)
+    ingredients?: NestedIngredientDto[];
+
+    @IsOptional()
+    @ValidateNested({ each: true })
+    @Type(() => NestedInstructionDto)
+    instructions?: NestedInstructionDto[];
 }
