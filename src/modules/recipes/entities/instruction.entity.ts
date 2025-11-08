@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Recipe } from '@/modules/recipes/entities/recipe.entity';
-import { SubRecipe } from '@/modules/subrecipes/entities/subrecipe.entity';
+import { SubRecipe } from '@/modules/recipes/entities/subrecipe.entity';
 
 @Entity('instructions')
 export class Instruction {

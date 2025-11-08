@@ -9,6 +9,7 @@ export class NestedSubRecipeDto {
 export class NestedIngredientDto {
     @IsString() @IsNotEmpty() @MaxLength(100) name: string;
     @IsString() @IsNotEmpty() @MaxLength(100) amount: string;
+    @IsString() @IsNotEmpty() @MaxLength(20) unit: string;
     @IsOptional() @IsString() subRecipeRef?: string;
 }
 

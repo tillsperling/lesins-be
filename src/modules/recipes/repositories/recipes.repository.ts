@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 
-import { Ingredient } from '@/modules/ingredients/entities/ingredient.entity';
-import { Instruction } from '@/modules/instructions/entities/instruction.entity';
 import { CreateRecipeDto } from '@/modules/recipes/dto/create-recipe-dto';
+import { Ingredient } from '@/modules/recipes/entities/ingredient.entity';
+import { Instruction } from '@/modules/recipes/entities/instruction.entity';
 import { Recipe } from '@/modules/recipes/entities/recipe.entity';
-import { SubRecipe } from '@/modules/subrecipes/entities/subrecipe.entity';
+import { SubRecipe } from '@/modules/recipes/entities/subrecipe.entity';
 
 @Injectable()
 export class RecipeRepository extends Repository<Recipe> {
@@ -31,7 +31,7 @@ export class RecipeRepository extends Repository<Recipe> {
                     }),
                 );
                 const saved = await em.save(SubRecipe, toSave);
-                saved.forEach((sub, i) => {
+                saved.forEach((sub: SubRecipe, i) => {
                     const tempId = dto.subRecipes![i].tempId;
                     subIdByTemp[tempId] = sub.id;
                 });
@@ -48,6 +48,7 @@ export class RecipeRepository extends Repository<Recipe> {
                                 : null,
                             name: ingredient.name,
                             amount: ingredient.amount,
+                            unit: ingredient.unit,
                         }),
                     ),
                 );

@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Ingredient } from '@/modules/ingredients/entities/ingredient.entity';
-import { Instruction } from '@/modules/instructions/entities/instruction.entity';
-import { SubRecipe } from '@/modules/subrecipes/entities/subrecipe.entity';
+import { Ingredient } from '@/modules/recipes/entities/ingredient.entity';
+import { Instruction } from '@/modules/recipes/entities/instruction.entity';
+import { SubRecipe } from '@/modules/recipes/entities/subrecipe.entity';
 
 @Entity('recipes')
 export class Recipe {
