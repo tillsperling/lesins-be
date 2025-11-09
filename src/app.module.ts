@@ -1,15 +1,11 @@
-import * as path from 'path';
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { config } from 'dotenv';
+import * as dotenv from 'dotenv';
 
-import { IngredientsModule } from '@/modules/ingredients/ingredients.module';
-import { InstructionsModule } from '@/modules/instructions/instructions.module';
+import { AuthModule } from '@/modules/auth/auth.module';
 import { RecipesModule } from '@/modules/recipes/recipes.module';
-import { SubRecipesModule } from '@/modules/subrecipes/subrecipes.module';
 
-config({ path: path.resolve(process.cwd(), '.env') });
+dotenv.config();
 
 @Module({
     imports: [
@@ -24,9 +20,7 @@ config({ path: path.resolve(process.cwd(), '.env') });
             synchronize: true,
         }),
         RecipesModule,
-        SubRecipesModule,
-        IngredientsModule,
-        InstructionsModule,
+        AuthModule,
     ],
 })
 export class AppModule {}
