@@ -18,6 +18,7 @@ export class RecipeRepository extends Repository<Recipe> {
             const recipe = em.create(Recipe, {
                 name: dto.name,
                 description: dto.description ?? '',
+                imageUrl: dto.imageUrl ?? '',
             });
             await em.save(recipe);
 

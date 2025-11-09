@@ -15,6 +15,9 @@ export class Recipe {
     @Column({ name: 'description', length: 255 })
     description: string;
 
+    @Column({ name: 'image', length: 255 })
+    imageUrl: string;
+
     @Column({
         name: 'created',
         type: 'timestamp',

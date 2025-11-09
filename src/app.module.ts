@@ -1,4 +1,7 @@
+import { join } from 'path';
+
 import { Module } from '@nestjs/common';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 
@@ -18,6 +21,10 @@ dotenv.config();
             database: process.env.DB_NAME,
             autoLoadEntities: true,
             synchronize: true,
+        }),
+        ServeStaticModule.forRoot({
+            rootPath: process.env.UPLOAD_DIR || join(__dirname, '..', '..', 'uploads'),
+            serveRoot: process.env.STATIC_PREFIX || '/uploads',
         }),
         RecipesModule,
         AuthModule,

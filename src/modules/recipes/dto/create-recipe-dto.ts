@@ -16,6 +16,10 @@ export class CreateRecipeDto {
     @IsOptional()
     description: string;
 
+    @IsString()
+    @IsOptional()
+    imageUrl?: string;
+
     @IsOptional()
     @ValidateNested({ each: true })
     @Type(() => NestedSubRecipeDto)
