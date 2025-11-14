@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build: ./fe
+    container_name: lesins_fe
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./be
+    container_name: lesins_be
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./be/.env
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.4
+    container_name: lesins_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lesins
+      MYSQL_USER: lino
+      MYSQL_PASSWORD: cappuccino
+    ports:
+      - "3306:3306"
+    volumes:
+      - lesins_db_data:/var/lib/mysql
+
+volumes:
+  lesins_db_data:
